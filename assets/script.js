@@ -12,6 +12,7 @@ var confirmCharacter;
 var confirmUppercase;
 var confirmLowercase;
 var choices;
+var password = []
 
 // declartion of the function
 function generatePassword() {
@@ -23,7 +24,7 @@ function generatePassword() {
     // warns the user that the condition must be between 8 and 128
   } else if (enter < 8 || enter > 128) {
     enter = prompt("You must choose between 8 and 128 characters.");
-    
+    return;
   } else {
     // asks user for input on variable
     confirmNumber = confirm("Will this contain numbers?");
@@ -34,7 +35,8 @@ function generatePassword() {
 
   if (!confirmNumber && !confirmCharacter && !confirmLowercase && !confirmUppercase) {
     // warns user if all criterias are false
-    choices = alert("You must choose at least one criteria!");
+    choices = alert("You must choose at least one criteria!")
+    return``;
     // else if statement for 4 option
   } else if (confirmCharacter && confirmNumber && confirmUppercase && confirmLowercase) {
     choices = specialChar.concat(num, lowerCaseletters, upperCaseletters);
@@ -75,14 +77,14 @@ function generatePassword() {
   } else if (confirmLowercase) {
     choices = lowerCaseletters;
 
-  }else (confirmUppercase);
-
-  var password = [];
-
-  for (var i = 0; i < enter.length; i ++) {
+  }else if (confirmUppercase) {
+    choices = upperCaseletters;
+  }
+  for (var i = 0; i < enter; i ++) {
     var pickChoices = choices[Math.floor(Math.random() * choices.length)]
     password.push(pickChoices);
-  }return;
+  }
+  return password.join('');
 }
 
 
