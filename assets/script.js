@@ -20,9 +20,12 @@ function generatePassword() {
   if (!enter) {
     // alerts the user if condition is not met
     alert("This needs a value");
+    // warns the user that the condition must be between 8 and 128
   } else if (enter < 8 || enter > 128) {
     enter = prompt("You must choose between 8 and 128 characters.");
+    
   } else {
+    // asks user for input on variable
     confirmNumber = confirm("Will this contain numbers?");
     confirmCharacter = confirm("Will this contain characters?");
     confirmLowercase = confirm("Will this contain lowercase letters?");
@@ -30,18 +33,24 @@ function generatePassword() {
   };
 
   if (!confirmNumber && !confirmCharacter && !confirmLowercase && !confirmUppercase) {
+    // warns user if all criterias are false
     choices = alert("You must choose at least one criteria!");
+    // else if statement for 4 option
   } else if (confirmCharacter && confirmNumber && confirmUppercase && confirmLowercase) {
     choices = specialChar.concat(num, lowerCaseletters, upperCaseletters);
+    // else if statement to choose 3 options
   } else if (confirmCharacter && confirmNumber && confirmUppercase) {
     choices = specialChar.concat(num, upperCaseletters);
+
   } else if (confirmCharacter && confirmNumber && confirmLowercase) {
-    choices = specialChar.concat(num, lowerCaseletters)
+    choices = specialChar.concat(num, lowerCaseletters);
+
   } else if (confirmNumber && confirmUppercase && confirmLowercase) {
-    choices = num.concat(lowerCaseletters, upperCaseletters)
+    choices = num.concat(lowerCaseletters, upperCaseletters);
+
   } else if (confirmCharacter && confirmNumber) {
     choices = specialChar.concat(num);
-
+    // else if statement to choose 2 options
   } else if (confirmCharacter && confirmLowercase) {
     choices = specialChar.concat(lowerCaseletters);
 
@@ -56,14 +65,16 @@ function generatePassword() {
 
   } else if (confirmNumber && confirmUppercase) {
     choices = num.concat(upperCaseletters);
-  
+  // else if statement to choose 1 option
   } else if (confirmCharacter) {
     choices = specialChar;
-  }
-  else if (confirmNumber) {
+
+  } else if (confirmNumber) {
     choices = num;
-  }else if (confirmLowercase) {
+
+  } else if (confirmLowercase) {
     choices = lowerCaseletters;
+
   }else (confirmUppercase);
 
   var password = [];
