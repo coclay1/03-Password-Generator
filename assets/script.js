@@ -84,7 +84,7 @@ function generatePassword() {
     var pickChoices = choices[Math.floor(Math.random() * choices.length)]
     password.push(pickChoices);
   }
-  return password;
+  return password.join('');
 }
 
 
