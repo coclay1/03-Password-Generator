@@ -62,12 +62,17 @@ function generatePassword() {
   }
   else if (confirmNumber) {
     choices = num;
-  }
-  else if (confirmLowercase) {
-    choices = lowerCaseletters;
   }else if (confirmLowercase) {
-    choices = upperCaseletters
-  };
+    choices = lowerCaseletters;
+  }else (confirmUppercase);
+
+  var password = [];
+
+  for (var i = 0; i < enter.length; i ++) {
+    var pickChoices = choices[Math.floor(Math.random() * choices.length)]
+    password.push(pickChoices);
+  }return;
+}
 
 
 
