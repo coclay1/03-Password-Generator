@@ -5,7 +5,6 @@ var upperCaseletters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "
 var lowerCaseletters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9",]
 var specialChar = ["!", "@", "#", "$", "%", ",", "^", "&", "*", "(", ")", "<", ">", "?", ".", "/", "[", "]", "{", "}", "|", "\ ", "`", "~", "+", "=", "-", "_"]
-var passwordLength = 8
 // User input variables
 var enter;
 var confirmNumber;
@@ -14,16 +13,65 @@ var confirmUppercase;
 var confirmLowercase;
 var choices;
 
+// declartion of the function
 function generatePassword() {
+  // Asks for uder imput, stores value in var of enter
   enter = prompt("Between 8 and 128 characters. Please enter how long you would like your password to be");
   if (!enter) {
+    // alerts the user if condition is not met
     alert("This needs a value");
   } else if (enter < 8 || enter > 128) {
     enter = prompt("You must choose between 8 and 128 characters.");
- 
+  } else {
+    confirmNumber = confirm("Will this contain numbers?");
+    confirmCharacter = confirm("Will this contain characters?");
+    confirmLowercase = confirm("Will this contain lowercase letters?");
+    confirmUppercase = confirm("Will this contain uppercase letter?");
+  };
 
+  if (!confirmNumber && !confirmCharacter && !confirmLowercase && !confirmUppercase) {
+    choices = alert("You must choose at least one criteria!");
+  } else if (confirmCharacter && confirmNumber && confirmUppercase && confirmLowercase) {
+    choices = specialChar.concat(num, lowerCaseletters, upperCaseletters);
+  } else if (confirmCharacter && confirmNumber && confirmUppercase) {
+    choices = specialChar.concat(num, upperCaseletters);
+  } else if (confirmCharacter && confirmNumber && confirmLowercase) {
+    choices = specialChar.concat(num, lowerCaseletters)
+  } else if (confirmNumber && confirmUppercase && confirmLowercase) {
+    choices = num.concat(lowerCaseletters, upperCaseletters)
+  } else if (confirmCharacter && confirmNumber) {
+    choices = specialChar.concat(num);
+
+  } else if (confirmCharacter && confirmLowercase) {
+    choices = specialChar.concat(lowerCaseletters);
+
+  } else if (confirmCharacter && confirmUppercase) {
+    choices = specialChar.concat(upperCaseletters);
+  }
+  else if (confirmLowercase && confirmNumber) {
+    choices = lowerCaseletters.concat(num);
+
+  } else if (confirmLowercase && confirmUppercase) {
+    choices = lowerCaseletters.concat(upperCaseletters);
+
+  } else if (confirmNumber && confirmUppercase) {
+    choices = num.concat(upperCaseletters);
   
+  } else if (confirmCharacter) {
+    choices = specialChar;
+  }
+  else if (confirmNumber) {
+    choices = num;
+  }else if (confirmLowercase) {
+    choices = lowerCaseletters;
+  }else (confirmUppercase);
 
+  var password = [];
+
+  for (var i = 0; i < enter.length; i ++) {
+    var pickChoices = choices[Math.floor(Math.random() * choices.length)]
+    password.push(pickChoices);
+  }return;
 }
 
 
